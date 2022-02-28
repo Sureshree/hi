@@ -1,0 +1,26 @@
+import java.util.*;
+class Coding{
+    public static void main(String args[]){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the key: ");
+        String key = scan.nextLine();
+        System.out.println("Enter the plain_text: ");
+        String plain_text = scan.nextLine();
+        String encrypted_text = encrypt(key,plain_text);
+        System.out.println("Encrypted Message is "+encrypted_text);
+        scan.close();
+    }
+    public static String encrypt(String key,String plain_text){
+        String result = "";
+        char c;
+        int dig;
+        for(int i=0;i<plain_text.length();i++){
+            dig = (int)key.charAt(i)+(int)plain_text.charAt(i)-97;
+            if(dig>122)
+                dig-=26;
+            c = (char)dig;
+            result+=(char)c;
+        }
+        return result;
+    }
+}
