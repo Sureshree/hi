@@ -1,0 +1,22 @@
+import javax.crypto.*;
+import java.util.Base64;
+public class Main
+{
+public static void main(String[] argv) throws Exception{
+System.out.println("Message Encryption Using AES Algorithm\n-------");
+KeyGenerator keygenerator = KeyGenerator.getInstance("AES");
+SecretKey myDesKey = keygenerator.generateKey();
+Cipher desCipher;
+desCipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+desCipher.init(Cipher.ENCRYPT_MODE, myDesKey);
+String text = "www.annauniv.edu";
+System.out.println("Message [Byte Format] : " + text);
+System.out.println("Message : " + text);
+String textEncrypted = 
+Base64.getEncoder().encodeToString(desCipher.doFinal(text.getBytes("UTF-8")));
+System.out.println("Encrypted Message: " + textEncrypted);
+desCipher.init(Cipher.DECRYPT_MODE, myDesKey);
+String textDecrypted =new String(desCipher.doFinal(Base64.getDecoder().decode(textEncrypted)));;
+System.out.println("Decrypted Message: " + textDecrypted);
+}
+}
