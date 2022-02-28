@@ -1,0 +1,33 @@
+import java.util.*;
+class Coding{
+    public static void main(String args[]){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the text: ");
+        String input = scan.nextLine();
+        System.out.println("Enter the key: ");
+        int key = scan.nextInt();
+        String encrypted_text = encrypt(input,key);
+        System.out.println("Encrypted Message is "+encrypted_text);
+        System.out.println("Decrypted Message is "+encrypt(encrypted_text,26-key));
+        scan.close();
+    }
+    public static String encrypt(String input,int key){
+        String result = "";
+        char c;
+        for(int i=0;i<input.length();i++){
+            c = input.charAt(i);
+            if(c>=97 && c<=122){
+                c+=key;
+                if(c>122)
+                    c-=26;
+            }
+            else if(c>=65 && c<=90){
+                c+=key;
+                if(c>90)
+                    c-=26;
+            }
+            result+=c;
+        }
+        return result;
+    }
+}
